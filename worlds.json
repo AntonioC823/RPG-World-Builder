@@ -1,0 +1,166 @@
+{
+    "Tony": {
+        "Voi": {
+            "name": "Voi",
+            "type": "Medieval Realm",
+            "features": [
+                "Magic System",
+                "Ancient Ruins",
+                "Hidden Treasures",
+                "Dangerous Creatures",
+                "Mystical Artifacts"
+            ],
+            "character": {
+                "name": "Hyabusa",
+                "class": "Rogue",
+                "attributes": [
+                    "Intelligence",
+                    "Endurance",
+                    "Luck"
+                ]
+            }
+        },
+        "Genesis": {
+            "name": "Genesis",
+            "type": "Fantasy Kingdom",
+            "features": [
+                "Magic System",
+                "Ancient Ruins",
+                "Dangerous Creatures",
+                "Guilds & Factions",
+                "Harsh Environment"
+            ],
+            "character": {
+                "name": "Ryu",
+                "class": "Rogue",
+                "attributes": [
+                    "Intelligence",
+                    "Charisma",
+                    "Wisdom"
+                ]
+            }
+        },
+        "Clash": {
+            "name": "Clash",
+            "type": "Steampunk World",
+            "features": [
+                "Advanced Technology",
+                "Dangerous Creatures",
+                "Guilds & Factions",
+                "Mystical Artifacts",
+                "Harsh Environment"
+            ],
+            "character": {
+                "name": "Ryu",
+                "class": "Mage",
+                "attributes": [
+                    "Agility",
+                    "Charisma",
+                    "Wisdom"
+                ]
+            }
+        },
+        "Emerald": {
+            "name": "Yip",
+            "type": "Mythological Realm",
+            "features": [
+                "Ancient Ruins",
+                "Dangerous Creatures",
+                "Political Conflict",
+                "Mystical Artifacts",
+                "Time Travel"
+            ],
+            "character": {
+                "name": "Rando",
+                "class": "Rogue",
+                "attributes": [
+                    "Agility",
+                    "Dexterity",
+                    "Wisdom"
+                ]
+            }
+        },
+        "Io": {
+            "name": "Io",
+            "type": "Post-Apocalyptic",
+            "features": [
+                "Ancient Ruins",
+                "Hidden Treasures",
+                "Guilds & Factions",
+                "Mystical Artifacts",
+                "Harsh Environment"
+            ],
+            "character": {
+                "name": "Hiro",
+                "class": "Warrior",
+                "attributes": [
+                    "Agility",
+                    "Perception",
+                    "Vitality"
+                ]
+            }
+        },
+        "Fun": {
+            "name": "Fun",
+            "type": "Dark Fantasy",
+            "features": [
+                "Advanced Technology",
+                "Hidden Treasures",
+                "Guilds & Factions",
+                "Mystical Artifacts",
+                "Time Travel"
+            ],
+            "character": {
+                "name": "Thomas",
+                "class": "Mage",
+                "attributes": [
+                    "Strength",
+                    "Endurance",
+                    "Vitality"
+                ]
+            }
+        }
+    },
+    "Steve": {
+        "Eradinus": {
+            "name": "Eradinus",
+            "type": "Magical Academy",
+            "features": [
+                "Advanced Technology",
+                "Ancient Ruins",
+                "Guilds & Factions",
+                "Mystical Artifacts",
+                "Harsh Environment"
+            ],
+            "character": {
+                "name": "Clever",
+                "class": "Mage",
+                "attributes": [
+                    "Intelligence",
+                    "Wisdom",
+                    "Perception"
+                ]
+            }
+        },
+        "Randomy": {
+            "name": "Randomy",
+            "type": "Fantasy Kingdom",
+            "features": [
+                "Magic System",
+                "Advanced Technology",
+                "Ancient Ruins",
+                "Political Conflict",
+                "Guilds & Factions"
+            ],
+            "character": {
+                "name": "Rando",
+                "class": "Mage",
+                "attributes": [
+                    "Agility",
+                    "Perception",
+                    "Vitality"
+                ]
+            }
+        }
+    }
+}
