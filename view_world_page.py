@@ -92,10 +92,14 @@ class ViewWorldPage(tk.Frame):
             features_str = ", ".join(world["features"])
             self.output.insert(tk.END, f"World Features: {features_str}\n\n")
 
-            self.output.insert(
-                tk.END,
-                f"\nStory: {world['name']} is a {world['type']} world shaped by {features_str}.\n"
-            )
+            genre = world.get("genre", "Unknown")
+            theme = world.get("theme", "Unknown")
+            story = world.get("story", "Story unavailable.")
+
+            self.output.insert(tk.END, "\n--- Story ---\n\n")
+            self.output.insert(tk.END, f"Genre: {genre}\n")
+            self.output.insert(tk.END, f"Theme: {theme}\n\n")
+            self.output.insert(tk.END, f"{story}\n")
         else:
             self.output.insert(tk.END, "No world saved yet.\n")
 

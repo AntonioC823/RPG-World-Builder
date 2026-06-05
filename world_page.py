@@ -1,5 +1,6 @@
 import tkinter as tk
 import random
+from microservices import request_label, request_prompt
 
 class WorldPage(tk.Frame):
     """
@@ -283,6 +284,33 @@ class WorldPage(tk.Frame):
         selected_type = self.world_type.get()
         selected_features = self.get_selected_features()
 
+        # Used to make a request to the Labels Microservice
+        request_details = {
+            "world_name": name,
+            "world_type": selected_type,
+            "world_features": selected_features,
+            "character": self.controller.character
+        }
+
+        genre = request_label(
+            "Generate one short genre label for this RPG world.",
+            request_details
+        ) or "Unknown"
+
+        theme = request_label(
+            "Generate one short theme label for this RPG world and character.",
+            request_details
+        ) or "Unknown"
+
+        # Used to make a request to the Prompts Microservice
+        story = request_prompt(
+            "Generate a short RPG story for this character and world. "
+            "Write in plain text only. "
+            "Do not use markdown formatting, asterisks, bold text, bullet points, or headings.",
+            request_details
+        ) or "Story unavailable."
+
+
         if name == "":
             self.controller.show_error_popup("Please enter a world name.", "World Error")
             return
@@ -299,6 +327,9 @@ class WorldPage(tk.Frame):
             "name": name,
             "type": selected_type,
             "features": selected_features,
+            "genre": genre,
+            "theme": theme,
+            "story": story,
             "character": self.controller.character
         }
 

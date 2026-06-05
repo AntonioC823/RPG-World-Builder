@@ -82,14 +82,17 @@
         },
         "Io": {
             "name": "Io",
-            "type": "Post-Apocalyptic",
+            "type": "Mythological Realm",
             "features": [
+                "Magic System",
+                "Advanced Technology",
                 "Ancient Ruins",
-                "Hidden Treasures",
-                "Guilds & Factions",
-                "Mystical Artifacts",
+                "Dangerous Creatures",
                 "Harsh Environment"
             ],
+            "genre": "Unknown",
+            "theme": "Unknown",
+            "story": "Story unavailable.",
             "character": {
                 "name": "Hiro",
                 "class": "Warrior",
@@ -104,11 +107,11 @@
             "name": "Fun",
             "type": "Dark Fantasy",
             "features": [
-                "Advanced Technology",
+                "Ancient Ruins",
                 "Hidden Treasures",
-                "Guilds & Factions",
+                "Dangerous Creatures",
                 "Mystical Artifacts",
-                "Time Travel"
+                "Harsh Environment"
             ],
             "character": {
                 "name": "Thomas",
@@ -116,6 +119,29 @@
                 "attributes": [
                     "Strength",
                     "Endurance",
+                    "Vitality"
+                ]
+            }
+        },
+        "io": {
+            "name": "Io",
+            "type": "Post-Apocalyptic",
+            "features": [
+                "Ancient Ruins",
+                "Hidden Treasures",
+                "Dangerous Creatures",
+                "Mystical Artifacts",
+                "Harsh Environment"
+            ],
+            "genre": "Post-Apocalyptic Fantasy",
+            "theme": "Post-Apocalyptic Warrior RPG\n\nHiro squinted through the ochre dust of Io's Ashlands. His warrior's instincts, honed by countless sunrises, stretched his perception to the crumbling horizon. A shimmer caught his eye \u2013 the tell-tale glint of ancient metal half-buried in a dune. With the agility of a sand-cat, he traversed the treacherous ground, his vitality allowing him to push through the searing winds.\n\nAs he neared the skeleton of a forgotten structure, a grotesque land-maw burst from the sand, its razor maw snapping. Hiro moved like lightning, dodging its initial lunge. His perception pinpointed a pulsating organ beneath its leathery hide. He plunged his scavenged blade deep, enduring a furious thrash that would fell a lesser man.\n\nInside the ruin, not the expected cache of tech, but a glowing crystalline shard pulsed with an eerie, cool light \u2013 a mystical artifact. Hiro tucked it away, its faint hum a promise in the desolate silence. The wasteland offered no easy answers, but today, it had offered a clue. He continued his trek, one step closer to whatever forgotten power lay dormant in Io.",
+            "story": "Story unavailable.",
+            "character": {
+                "name": "Hiro",
+                "class": "Warrior",
+                "attributes": [
+                    "Agility",
+                    "Perception",
                     "Vitality"
                 ]
             }
