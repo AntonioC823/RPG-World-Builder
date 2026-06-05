@@ -117,7 +117,7 @@ class LoadCreatePage(tk.Frame):
         # Help button
         tk.Button(
             page_frame,
-            text="Help Button",
+            text="Help",
             font=("Arial", 16),
             command=lambda: controller.show_page("HelpPage")
         ).place(relx=0.77, rely=0.93, anchor="center", width=230, height=45)
@@ -203,6 +203,7 @@ class LoadCreatePage(tk.Frame):
         self.world_listbox.place(relx=0.28, rely=0.42, anchor="n", width=250, height=min(len(world_names), 5) * 22)
         self.world_listbox.lift()
 
+
     def hide_dropdown(self, event):
         widget = event.widget
 
@@ -258,43 +259,11 @@ class LoadCreatePage(tk.Frame):
         """
         Ask the user if they want to launch the found world.
         """
-        popup = tk.Toplevel(self.controller.root)
-        popup.title("Confirm Launch")
-        popup.geometry("420x180")
-        popup.resizable(False, False)
-
-        self.controller.root.update_idletasks()
-        x = self.controller.root.winfo_x() + (self.controller.root.winfo_width() // 2) - 210
-        y = self.controller.root.winfo_y() + (self.controller.root.winfo_height() // 2) - 90
-        popup.geometry(f"420x180+{x}+{y}")
-
-        tk.Label(
-            popup,
-            text=f"Are you sure you want to launch\nWorld '{saved_world['name']}'?",
-            font=("Arial", 12),
-            wraplength=360,
-            justify="center"
-        ).pack(pady=25)
-
-        button_frame = tk.Frame(popup)
-        button_frame.pack(pady=5)
-
-        tk.Button(
-            button_frame,
-            text="Yes",
-            width=10,
-            command=lambda: self.launch_world(saved_world, popup)
-        ).pack(side="left", padx=10)
-
-        tk.Button(
-            button_frame,
-            text="No",
-            width=10,
-            command=popup.destroy
-        ).pack(side="left", padx=10)
-
-        popup.transient(self.controller.root)
-        popup.grab_set()
+        self.controller.show_confirm_popup(
+            f"Are you sure you want to launch\nWorld '{saved_world['name']}'?",
+            "Confirm Launch",
+            lambda popup: self.launch_world(saved_world, popup)
+        )
 
     
     def launch_world(self, saved_world, popup):
@@ -320,6 +289,7 @@ class LoadCreatePage(tk.Frame):
         self.controller.world = {}
 
         self.controller.show_page("CharacterPage")
+
 
     def update_recent_worlds(self):
         """
@@ -368,53 +338,13 @@ class LoadCreatePage(tk.Frame):
         self.search_entry.insert(0, world_name)
         self.show_launch_world_popup(saved_world)
 
+
     def logout_with_warning(self):
         """
         Ask the user to confirm logout.
         """
-        popup = tk.Toplevel(self.controller.root)
-        popup.title("Confirm Logout")
-        popup.geometry("420x180")
-        popup.resizable(False, False)
-
-        # Center popup
-        self.controller.root.update_idletasks()
-        x = self.controller.root.winfo_x() + (self.controller.root.winfo_width() // 2) - 210
-        y = self.controller.root.winfo_y() + (self.controller.root.winfo_height() // 2) - 90
-        popup.geometry(f"420x180+{x}+{y}")
-
-        tk.Label(
-            popup,
-            text="Are you sure you want to logout?",
-            font=("Arial", 12),
-            wraplength=360,
-            justify="center"
-        ).pack(pady=25)
-
-        button_frame = tk.Frame(popup)
-        button_frame.pack(pady=5)
-
-        tk.Button(
-            button_frame,
-            text="Yes",
-            width=10,
-            command=lambda: self.confirm_logout(popup)
-        ).pack(side="left", padx=10)
-
-        tk.Button(
-            button_frame,
-            text="No",
-            width=10,
-            command=popup.destroy
-        ).pack(side="left", padx=10)
-
-        popup.transient(self.controller.root)
-        popup.grab_set()
-
-
-    def confirm_logout(self, popup):
-        """
-        Confirm logout and return to login page.
-        """
-        popup.destroy()
-        self.controller.show_page("LoginPage")
+        self.controller.show_confirm_popup(
+            "Are you sure you want to logout?",
+            "Confirm Logout",
+            self.controller.logout
+        )

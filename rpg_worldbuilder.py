@@ -61,6 +61,7 @@ class RPGWorldbuilder:
         # Start with Login Page
         self.show_page("LoginPage")
 
+
     def show_page(self, page_name):
         """
         Display the requested page.
@@ -73,6 +74,23 @@ class RPGWorldbuilder:
         if page_name == "LoadCreatePage":
             self.pages[page_name].update_world_list()
             self.pages[page_name].update_recent_worlds()
+
+
+    def logout(self, popup):
+        """
+        Close the popup and return to the login page.
+        """
+        popup.destroy()
+        self.show_page("LoginPage")
+
+
+    def confirm_navigation(self, popup, page_name):
+        """
+        Close the popup and navigate to the requested page.
+        """
+        popup.destroy()
+        self.show_page(page_name)
+
 
     def load_users(self):
         """
@@ -110,21 +128,69 @@ class RPGWorldbuilder:
         with open(self.world_file, "w") as file:
             json.dump(self.saved_worlds, file, indent=4)
 
-    
-    def show_error_popup(self, message, title="Error"):
+
+    def center_popup(self, popup, width, height):
         """
-        Displays a popup for error messages.
+        Center a popup window relative to the main application window.
+        """
+        self.root.update_idletasks()
+
+        x = self.root.winfo_x() + (self.root.winfo_width() // 2) - (width // 2)
+        y = self.root.winfo_y() + (self.root.winfo_height() // 2) - (height // 2)
+
+        popup.geometry(f"{width}x{height}+{x}+{y}")
+
+
+    def show_confirm_popup(self, message, title, on_yes, width=420, height=180):
+        """
+        Display a confirmation popup with Yes and No buttons.
+        """
+        popup = tk.Toplevel(self.root)
+        popup.title(title)
+        popup.geometry(f"{width}x{height}")
+        popup.resizable(False, False)
+
+        self.center_popup(popup, width, height)
+
+        tk.Label(
+            popup,
+            text=message,
+            font=("Arial", 12),
+            wraplength=360,
+            justify="center"
+        ).pack(pady=25)
+
+        button_frame = tk.Frame(popup)
+        button_frame.pack(pady=5)
+
+        tk.Button(
+            button_frame,
+            text="Yes",
+            width=10,
+            command=lambda: on_yes(popup)
+        ).pack(side="left", padx=10)
+
+        tk.Button(
+            button_frame,
+            text="No",
+            width=10,
+            command=popup.destroy
+        ).pack(side="left", padx=10)
+
+        popup.transient(self.root)
+        popup.grab_set()
+
+    
+    def show_message_popup(self, message, title="Message"):
+        """
+        Display a simple popup message with an OK button.
         """
         popup = tk.Toplevel(self.root)
         popup.title(title)
         popup.geometry("400x150")
         popup.resizable(False, False)
 
-        # Center popup relative to main window
-        self.root.update_idletasks()
-        x = self.root.winfo_x() + (self.root.winfo_width() // 2) - 200
-        y = self.root.winfo_y() + (self.root.winfo_height() // 2) - 75
-        popup.geometry(f"400x150+{x}+{y}")
+        self.center_popup(popup, 400, 150)
 
         tk.Label(
             popup,
@@ -143,6 +209,13 @@ class RPGWorldbuilder:
 
         popup.transient(self.root)
         popup.grab_set()
+
+
+    def show_error_popup(self, message, title="Error"):
+        """
+        Display an error or status popup.
+        """
+        self.show_message_popup(message, title)
 
 
 if __name__ == "__main__":

@@ -201,44 +201,13 @@ class WorldPage(tk.Frame):
         Warn the user before leaving the page if there are unsaved changes.
         """
         if self.unsaved_changes:
-            popup = tk.Toplevel(self.controller.root)
-            popup.title("Unsaved Changes")
-            popup.geometry("400x150")
-            popup.resizable(False, False)
-
-            # Center popup relative to main window
-            self.controller.root.update_idletasks()
-            x = self.controller.root.winfo_x() + (self.controller.root.winfo_width() // 2) - 210
-            y = self.controller.root.winfo_y() + (self.controller.root.winfo_height() // 2) - 90
-            popup.geometry(f"400x150+{x}+{y}")
-
-            tk.Label(
-                popup,
-                text="All unsaved changes will be lost.\nAre you sure you want to leave this page?",
-                font=("Arial", 12),
-                wraplength=360,
-                justify="center"
-            ).pack(pady=25)
-
-            button_frame = tk.Frame(popup)
-            button_frame.pack(pady=5)
-
-            tk.Button(
-                button_frame,
-                text="Yes",
-                width=10,
-                command=lambda: self.confirm_navigation(page_name, popup)
-            ).pack(side="left", padx=10)
-
-            tk.Button(
-                button_frame,
-                text="No",
-                width=10,
-                command=popup.destroy
-            ).pack(side="left", padx=10)
-
-            popup.transient(self.controller.root)
-            popup.grab_set()
+            self.controller.show_confirm_popup(
+                "All unsaved changes will be lost.\nAre you sure you want to leave this page?",
+                "Unsaved Changes",
+                lambda popup: self.confirm_navigation(page_name, popup),
+                width=400,
+                height=150
+            )
         else:
             self.controller.show_page(page_name)
 
@@ -248,8 +217,7 @@ class WorldPage(tk.Frame):
         Confirm navigation away from the page.
         """
         self.unsaved_changes = False
-        popup.destroy()
-        self.controller.show_page(page_name)
+        self.controller.confirm_navigation(popup, page_name)
 
 
     def logout_with_warning(self):
@@ -261,52 +229,19 @@ class WorldPage(tk.Frame):
         if self.unsaved_changes:
             message = "Are you sure you want to logout?\nAll unsaved changes will be lost."
 
-        popup = tk.Toplevel(self.controller.root)
-        popup.title("Confirm Logout")
-        popup.geometry("420x180")
-        popup.resizable(False, False)
-
-        self.controller.root.update_idletasks()
-        x = self.controller.root.winfo_x() + (self.controller.root.winfo_width() // 2) - 210
-        y = self.controller.root.winfo_y() + (self.controller.root.winfo_height() // 2) - 90
-        popup.geometry(f"420x180+{x}+{y}")
-
-        tk.Label(
-            popup,
-            text=message,
-            font=("Arial", 12),
-            wraplength=360,
-            justify="center"
-        ).pack(pady=25)
-
-        button_frame = tk.Frame(popup)
-        button_frame.pack(pady=5)
-
-        tk.Button(
-            button_frame,
-            text="Yes",
-            width=10,
-            command=lambda: self.confirm_logout(popup)
-        ).pack(side="left", padx=10)
-
-        tk.Button(
-            button_frame,
-            text="No",
-            width=10,
-            command=popup.destroy
-        ).pack(side="left", padx=10)
-
-        popup.transient(self.controller.root)
-        popup.grab_set()
+        self.controller.show_confirm_popup(
+            message,
+            "Confirm Logout",
+            self.logout
+        )
 
 
-    def confirm_logout(self, popup):
+    def logout(self, popup):
         """
-        Confirm logout and return to login page.
+        Clear unsaved changes and logout.
         """
         self.unsaved_changes = False
-        popup.destroy()
-        self.controller.show_page("LoginPage")
+        self.controller.logout(popup)
 
     
     def generate_world(self):
