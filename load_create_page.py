@@ -97,6 +97,14 @@ class LoadCreatePage(tk.Frame):
         )
         self.recent_button_1.place(relx=0.30, rely=0.70, anchor="center", width=190, height=95)
 
+        self.recent_timestamp_1 = tk.Label(
+            page_frame,
+            text="",
+            font=("Arial", 10),
+            bg="#f4f4f4"
+        )
+        self.recent_timestamp_1.place(relx=0.30, rely=0.79, anchor="center")
+
         # RPG 2 button
         self.recent_button_2 = tk.Button(
             page_frame,
@@ -105,6 +113,14 @@ class LoadCreatePage(tk.Frame):
             command=lambda: self.load_recent_world(1)
         )
         self.recent_button_2.place(relx=0.70, rely=0.70, anchor="center", width=190, height=95)
+
+        self.recent_timestamp_2 = tk.Label(
+            page_frame,
+            text="",
+            font=("Arial", 10),
+            bg="#f4f4f4"
+        )
+        self.recent_timestamp_2.place(relx=0.70, rely=0.79, anchor="center")
 
         # Logout button
         tk.Button(
@@ -298,22 +314,29 @@ class LoadCreatePage(tk.Frame):
         username = self.controller.current_user
         user_worlds = self.controller.saved_worlds.get(username, {})
 
-        recent_worlds = list(user_worlds.items())[-2:]
-        recent_worlds.reverse()
+        recent_worlds = sorted(
+            user_worlds.items(),
+            key=lambda item: item[1].get("timestamp", ""),
+            reverse=True
+        )[:2]
 
         buttons = [self.recent_button_1, self.recent_button_2]
+        timestamp_labels = [self.recent_timestamp_1, self.recent_timestamp_2]
 
         for index, button in enumerate(buttons):
             if index < len(recent_worlds):
                 world_name, world_data = recent_worlds[index]
                 character = world_data.get("character", {})
                 character_name = character.get("name", "No character")
+                timestamp = world_data.get("timestamp", "Timestamp unavailable")
+                timestamp_labels[index].config(text=f"Saved: {timestamp}")
 
                 button.config(
                     text=f"World: {world_name}\nCharacter: {character_name}",
                     state="normal"
                 )
             else:
+                timestamp_labels[index].config(text="")
                 button.config(
                     text="No recent world",
                     state="disabled"
@@ -327,8 +350,11 @@ class LoadCreatePage(tk.Frame):
         username = self.controller.current_user
         user_worlds = self.controller.saved_worlds.get(username, {})
 
-        recent_worlds = list(user_worlds.items())[-2:]
-        recent_worlds.reverse()
+        recent_worlds = sorted(
+            user_worlds.items(),
+            key=lambda item: item[1].get("timestamp", ""),
+            reverse=True
+        )[:2]
 
         if index >= len(recent_worlds):
             return

@@ -1,6 +1,6 @@
 import tkinter as tk
 import random
-from microservices import request_label, request_prompt
+from microservices import request_label, request_prompt, request_timestamp
 
 class WorldPage(tk.Frame):
     """
@@ -323,6 +323,10 @@ class WorldPage(tk.Frame):
             self.controller.show_error_popup("Please select exactly 5 features.", "World Error")
             return
 
+        timestamp_response = request_timestamp("RPG Worldbuilder", self.controller.current_user, "MM/DD/YYYY HH:MM:SS AM/PM")
+
+        timestamp = timestamp_response.get("timestamp", "Timestamp unavailable")
+
         self.controller.world = {
             "name": name,
             "type": selected_type,
@@ -330,6 +334,7 @@ class WorldPage(tk.Frame):
             "genre": genre,
             "theme": theme,
             "story": story,
+            "timestamp": timestamp,
             "character": self.controller.character
         }
 
@@ -339,8 +344,13 @@ class WorldPage(tk.Frame):
         if username not in self.controller.saved_worlds:
             self.controller.saved_worlds[username] = {}
 
-        if self.controller.current_world_name is None:
-            self.controller.current_world_name = name
+        old_world_name = self.controller.current_world_name
+
+        if old_world_name is not None and old_world_name != name:
+            if old_world_name in self.controller.saved_worlds[username]:
+                del self.controller.saved_worlds[username][old_world_name]
+
+        self.controller.current_world_name = name
 
         # Save/update world with username
         self.controller.saved_worlds[username][self.controller.current_world_name] = self.controller.world

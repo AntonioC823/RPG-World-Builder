@@ -1,190 +1,98 @@
 {
     "Tony": {
-        "Voi": {
-            "name": "Voi",
-            "type": "Medieval Realm",
+        "Eradinus II": {
+            "name": "Eradinus II",
+            "type": "Sci-Fi Galaxy",
             "features": [
-                "Magic System",
+                "Advanced Technology",
                 "Ancient Ruins",
                 "Hidden Treasures",
-                "Dangerous Creatures",
-                "Mystical Artifacts"
+                "Guilds & Factions",
+                "Time Travel"
             ],
+            "genre": "Unknown",
+            "theme": "Unknown",
+            "story": "Story unavailable.",
+            "timestamp": "06/05/2026 07:18:51 AM",
             "character": {
-                "name": "Hyabusa",
-                "class": "Rogue",
+                "name": "John",
+                "class": "Mage",
                 "attributes": [
                     "Intelligence",
                     "Endurance",
-                    "Luck"
+                    "Charisma"
                 ]
             }
         },
-        "Genesis": {
-            "name": "Genesis",
+        "Meridian": {
+            "name": "Meridian",
             "type": "Fantasy Kingdom",
             "features": [
-                "Magic System",
-                "Ancient Ruins",
-                "Dangerous Creatures",
-                "Guilds & Factions",
-                "Harsh Environment"
-            ],
-            "character": {
-                "name": "Ryu",
-                "class": "Rogue",
-                "attributes": [
-                    "Intelligence",
-                    "Charisma",
-                    "Wisdom"
-                ]
-            }
-        },
-        "Clash": {
-            "name": "Clash",
-            "type": "Steampunk World",
-            "features": [
                 "Advanced Technology",
+                "Hidden Treasures",
                 "Dangerous Creatures",
-                "Guilds & Factions",
                 "Mystical Artifacts",
-                "Harsh Environment"
-            ],
-            "character": {
-                "name": "Ryu",
-                "class": "Mage",
-                "attributes": [
-                    "Agility",
-                    "Charisma",
-                    "Wisdom"
-                ]
-            }
-        },
-        "Emerald": {
-            "name": "Yip",
-            "type": "Mythological Realm",
-            "features": [
-                "Ancient Ruins",
-                "Dangerous Creatures",
-                "Political Conflict",
-                "Mystical Artifacts",
-                "Time Travel"
-            ],
-            "character": {
-                "name": "Rando",
-                "class": "Rogue",
-                "attributes": [
-                    "Agility",
-                    "Dexterity",
-                    "Wisdom"
-                ]
-            }
-        },
-        "Io": {
-            "name": "Io",
-            "type": "Mythological Realm",
-            "features": [
-                "Magic System",
-                "Advanced Technology",
-                "Ancient Ruins",
-                "Dangerous Creatures",
                 "Harsh Environment"
             ],
             "genre": "Unknown",
             "theme": "Unknown",
             "story": "Story unavailable.",
+            "timestamp": "06/05/2026 07:19:47 AM",
             "character": {
-                "name": "Hiro",
-                "class": "Warrior",
+                "name": "Linda",
+                "class": "Rogue",
                 "attributes": [
-                    "Agility",
+                    "Luck",
                     "Perception",
                     "Vitality"
                 ]
             }
         },
-        "Fun": {
-            "name": "Fun",
-            "type": "Dark Fantasy",
-            "features": [
-                "Ancient Ruins",
-                "Hidden Treasures",
-                "Dangerous Creatures",
-                "Mystical Artifacts",
-                "Harsh Environment"
-            ],
-            "character": {
-                "name": "Thomas",
-                "class": "Mage",
-                "attributes": [
-                    "Strength",
-                    "Endurance",
-                    "Vitality"
-                ]
-            }
-        },
-        "io": {
-            "name": "Io",
-            "type": "Post-Apocalyptic",
-            "features": [
-                "Ancient Ruins",
-                "Hidden Treasures",
-                "Dangerous Creatures",
-                "Mystical Artifacts",
-                "Harsh Environment"
-            ],
-            "genre": "Post-Apocalyptic Fantasy",
-            "theme": "Post-Apocalyptic Warrior RPG\n\nHiro squinted through the ochre dust of Io's Ashlands. His warrior's instincts, honed by countless sunrises, stretched his perception to the crumbling horizon. A shimmer caught his eye \u2013 the tell-tale glint of ancient metal half-buried in a dune. With the agility of a sand-cat, he traversed the treacherous ground, his vitality allowing him to push through the searing winds.\n\nAs he neared the skeleton of a forgotten structure, a grotesque land-maw burst from the sand, its razor maw snapping. Hiro moved like lightning, dodging its initial lunge. His perception pinpointed a pulsating organ beneath its leathery hide. He plunged his scavenged blade deep, enduring a furious thrash that would fell a lesser man.\n\nInside the ruin, not the expected cache of tech, but a glowing crystalline shard pulsed with an eerie, cool light \u2013 a mystical artifact. Hiro tucked it away, its faint hum a promise in the desolate silence. The wasteland offered no easy answers, but today, it had offered a clue. He continued his trek, one step closer to whatever forgotten power lay dormant in Io.",
-            "story": "Story unavailable.",
-            "character": {
-                "name": "Hiro",
-                "class": "Warrior",
-                "attributes": [
-                    "Agility",
-                    "Perception",
-                    "Vitality"
-                ]
-            }
-        }
-    },
-    "Steve": {
-        "Eradinus": {
-            "name": "Eradinus",
-            "type": "Magical Academy",
+        "Genesis III": {
+            "name": "Genesis III",
+            "type": "Fantasy Kingdom",
             "features": [
                 "Advanced Technology",
-                "Ancient Ruins",
-                "Guilds & Factions",
+                "Hidden Treasures",
+                "Dangerous Creatures",
                 "Mystical Artifacts",
                 "Harsh Environment"
             ],
+            "genre": "Unknown",
+            "theme": "Unknown",
+            "story": "Story unavailable.",
+            "timestamp": "06/05/2026 07:20:10 AM",
             "character": {
-                "name": "Clever",
-                "class": "Mage",
+                "name": "Fred",
+                "class": "Rogue",
                 "attributes": [
-                    "Intelligence",
-                    "Wisdom",
+                    "Strength",
+                    "Charisma",
                     "Perception"
                 ]
             }
         },
-        "Randomy": {
-            "name": "Randomy",
+        "Juniper V": {
+            "name": "Juniper V",
             "type": "Fantasy Kingdom",
             "features": [
-                "Magic System",
                 "Advanced Technology",
-                "Ancient Ruins",
-                "Political Conflict",
-                "Guilds & Factions"
+                "Hidden Treasures",
+                "Dangerous Creatures",
+                "Mystical Artifacts",
+                "Harsh Environment"
             ],
+            "genre": "Unknown",
+            "theme": "Unknown",
+            "story": "Story unavailable.",
+            "timestamp": "06/05/2026 07:20:42 AM",
             "character": {
-                "name": "Rando",
-                "class": "Mage",
+                "name": "Kelly",
+                "class": "Warrior",
                 "attributes": [
-                    "Agility",
-                    "Perception",
-                    "Vitality"
+                    "Strength",
+                    "Intelligence",
+                    "Perception"
                 ]
             }
         }
