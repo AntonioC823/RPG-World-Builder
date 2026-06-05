@@ -1,4 +1,5 @@
 import tkinter as tk
+from microservices import request_prompt
 
 class ViewWorldPage(tk.Frame):
     """
@@ -47,8 +48,16 @@ class ViewWorldPage(tk.Frame):
             bg="#f4f4f4"
         ).pack(pady=20)
 
-        self.output = tk.Text(container, width=90, height=20, font=("Arial", 12))
+        self.output = tk.Text(container, width=90, height=20, font=("Arial", 12), wrap="word")
         self.output.pack(pady=10)
+
+        tk.Button(
+            container,
+            text="Generate Story",
+            width=25,
+            font=("Arial", 12),
+            command=self.generate_story
+        ).pack(pady=6)
 
         tk.Button(
             container,
@@ -71,6 +80,8 @@ class ViewWorldPage(tk.Frame):
         """
         Display saved character and world information.
         """
+
+        self.output.config(state="normal")
         self.output.delete("1.0", tk.END)
 
         character = self.controller.character
@@ -102,6 +113,40 @@ class ViewWorldPage(tk.Frame):
             self.output.insert(tk.END, f"{story}\n")
         else:
             self.output.insert(tk.END, "No world saved yet.\n")
+
+        self.output.config(state="disabled")
+
+
+    def generate_story(self):
+        """
+        Generate a story for the currently loaded world.
+        """
+        world = self.controller.world
+        character = self.controller.character
+
+        request_details = {
+            "world_name": world.get("name"),
+            "world_type": world.get("type"),
+            "world_features": world.get("features"),
+            "character": character
+        }
+
+        story = request_prompt(
+            "Generate a short RPG story for this character and world. "
+            "Write in plain text only. "
+            "Do not use markdown formatting, asterisks, bold text, bullet points, or headings.",
+            request_details
+        ) or "Story unavailable."
+
+        world["story"] = story
+
+        username = self.controller.current_user
+        world_name = self.controller.current_world_name
+
+        self.controller.saved_worlds[username][world_name] = world
+        self.controller.save_worlds()
+
+        self.refresh_view()
 
 
     def logout_with_warning(self):

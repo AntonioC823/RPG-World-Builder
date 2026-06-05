@@ -1,6 +1,6 @@
 import tkinter as tk
 import random
-from microservices import request_label, request_prompt, request_timestamp
+from microservices import request_label, request_timestamp
 
 class WorldPage(tk.Frame):
     """
@@ -302,14 +302,6 @@ class WorldPage(tk.Frame):
             request_details
         ) or "Unknown"
 
-        # Used to make a request to the Prompts Microservice
-        story = request_prompt(
-            "Generate a short RPG story for this character and world. "
-            "Write in plain text only. "
-            "Do not use markdown formatting, asterisks, bold text, bullet points, or headings.",
-            request_details
-        ) or "Story unavailable."
-
 
         if name == "":
             self.controller.show_error_popup("Please enter a world name.", "World Error")
@@ -333,7 +325,7 @@ class WorldPage(tk.Frame):
             "features": selected_features,
             "genre": genre,
             "theme": theme,
-            "story": story,
+            "story": "Story not generated yet. Please generate story.",
             "timestamp": timestamp,
             "character": self.controller.character
         }
