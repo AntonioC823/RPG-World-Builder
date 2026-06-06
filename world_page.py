@@ -1,6 +1,6 @@
 import tkinter as tk
 import random
-from microservices import request_label, request_timestamp
+from microservices import request_label, request_timestamp, request_statistics
 
 class WorldPage(tk.Frame):
     """
@@ -338,6 +338,8 @@ class WorldPage(tk.Frame):
 
         old_world_name = self.controller.current_world_name
 
+        is_new_world = self.controller.current_world_name is None
+
         if old_world_name is not None and old_world_name != name:
             if old_world_name in self.controller.saved_worlds[username]:
                 del self.controller.saved_worlds[username][old_world_name]
@@ -347,6 +349,35 @@ class WorldPage(tk.Frame):
         # Save/update world with username
         self.controller.saved_worlds[username][self.controller.current_world_name] = self.controller.world
         self.controller.save_worlds()
+
+        if is_new_world:
+            request_statistics({
+                "event": {
+                    "app_name": "RPG Worldbuilder",
+                    "user_id": username,
+                    "event_type": "world_created"
+                }
+            })
+
+            request_statistics({
+                "event": {
+                    "app_name": "RPG Worldbuilder",
+                    "user_id": username,
+                    "event_type": "character_created"
+                }
+            })
+
+            if "_stats" not in self.controller.saved_worlds[username]:
+                self.controller.saved_worlds[username]["_stats"] = {
+                    "world_created": 0,
+                    "character_created": 0,
+                    "story_generated": 0
+                }
+
+            self.controller.saved_worlds[username]["_stats"]["world_created"] += 1
+            self.controller.saved_worlds[username]["_stats"]["character_created"] += 1
+
+            self.controller.save_worlds()
 
         self.unsaved_changes = False
 

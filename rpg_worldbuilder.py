@@ -74,6 +74,7 @@ class RPGWorldbuilder:
         if page_name == "LoadCreatePage":
             self.pages[page_name].update_world_list()
             self.pages[page_name].update_recent_worlds()
+            self.pages[page_name].update_user_stats()
 
 
     def logout(self, popup):

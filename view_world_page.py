@@ -1,5 +1,5 @@
 import tkinter as tk
-from microservices import request_prompt
+from microservices import request_prompt, request_statistics
 
 class ViewWorldPage(tk.Frame):
     """
@@ -144,6 +144,24 @@ class ViewWorldPage(tk.Frame):
         world_name = self.controller.current_world_name
 
         self.controller.saved_worlds[username][world_name] = world
+
+        request_statistics({
+            "event": {
+                "app_name": "RPG Worldbuilder",
+                "user_id": username,
+                "event_type": "story_generated"
+            }
+        })
+
+        if "_stats" not in self.controller.saved_worlds[username]:
+            self.controller.saved_worlds[username]["_stats"] = {
+                "world_created": 0,
+                "character_created": 0,
+                "story_generated": 0
+            }
+
+        self.controller.saved_worlds[username]["_stats"]["story_generated"] += 1
+        
         self.controller.save_worlds()
 
         self.refresh_view()

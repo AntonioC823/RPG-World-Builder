@@ -122,6 +122,38 @@ class LoadCreatePage(tk.Frame):
         )
         self.recent_timestamp_2.place(relx=0.70, rely=0.79, anchor="center")
 
+        # Show statistics
+        stats_frame = tk.Frame(
+            self,
+            bg="#ffffff",
+            bd=1,
+            relief="solid"
+        )
+
+        stats_frame.place(
+            relx=0.82,
+            rely=0.52,
+            anchor="center",
+            width=260,
+            height=160
+        )
+
+        tk.Label(
+            stats_frame,
+            text="RPG Statistics",
+            font=("Arial", 14, "bold"),
+            bg="#ffffff"
+        ).pack(pady=(10, 5))
+
+        self.stats_label = tk.Label(
+            stats_frame,
+            text="",
+            font=("Arial", 12),
+            bg="#ffffff",
+            justify="left"
+        )
+        self.stats_label.pack()
+
         # Logout button
         tk.Button(
             page_frame,
@@ -137,6 +169,23 @@ class LoadCreatePage(tk.Frame):
             font=("Arial", 16),
             command=lambda: controller.show_page("HelpPage")
         ).place(relx=0.77, rely=0.93, anchor="center", width=230, height=45)
+
+    
+    def update_user_stats(self):
+        """
+        Display RPG statistics for the current user.
+        """
+        username = self.controller.current_user
+
+        stats = self.controller.saved_worlds.get(username, {}).get("_stats", {})
+
+        self.stats_label.config(
+            text=(
+                f"Worlds Created: {stats.get('world_created', 0)}\n\n"
+                f"Characters Created: {stats.get('character_created', 0)}\n\n"
+                f"Stories Generated: {stats.get('story_generated', 0)}"
+            )
+        )
 
     
     def search_rpg(self):
@@ -177,6 +226,12 @@ class LoadCreatePage(tk.Frame):
 
         user_worlds = self.controller.saved_worlds.get(username, {})
 
+        user_worlds = {
+            world_name: world_data
+            for world_name, world_data in user_worlds.items()
+            if world_name != "_stats"
+        }
+
         matching_worlds = []
         for world_name in user_worlds:
             if search_text in world_name.lower():
@@ -204,6 +259,12 @@ class LoadCreatePage(tk.Frame):
 
         username = self.controller.current_user
         user_worlds = self.controller.saved_worlds.get(username, {})
+
+        user_worlds = {
+            world_name: world_data
+            for world_name, world_data in user_worlds.items()
+            if world_name != "_stats"
+        }
 
         world_names = list(user_worlds.keys())
         world_names.sort()
@@ -314,6 +375,12 @@ class LoadCreatePage(tk.Frame):
         username = self.controller.current_user
         user_worlds = self.controller.saved_worlds.get(username, {})
 
+        user_worlds = {
+            world_name: world_data
+            for world_name, world_data in user_worlds.items()
+            if world_name != "_stats"
+        }
+
         recent_worlds = sorted(
             user_worlds.items(),
             key=lambda item: item[1].get("timestamp", ""),
@@ -349,6 +416,12 @@ class LoadCreatePage(tk.Frame):
         """
         username = self.controller.current_user
         user_worlds = self.controller.saved_worlds.get(username, {})
+
+        user_worlds = {
+            world_name: world_data
+            for world_name, world_data in user_worlds.items()
+            if world_name != "_stats"
+        }
 
         recent_worlds = sorted(
             user_worlds.items(),

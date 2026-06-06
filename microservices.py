@@ -3,6 +3,7 @@ import zmq
 LABELS_PORT = 5557
 PROMPTS_PORT = 5556
 TIMESTAMP_PORT = 5555
+STATISTICS_PORT = 5558
 
 def send_request(port, request_data):
     """
@@ -91,3 +92,15 @@ def request_timestamp(app_name, user_id, timestamp_format):
     )
 
     return response
+
+
+def request_statistics(request_data):
+    """
+    Request statistics from the Statistics Microservice.
+    """
+    try:
+        response = send_request(STATISTICS_PORT, request_data)
+        return response
+
+    except Exception:
+        return {}
